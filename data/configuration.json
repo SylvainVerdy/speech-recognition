@@ -1,0 +1,10 @@
+{
+  "data":
+  {
+    "paths":
+    {
+      "train": "/home/verdy/workspace_thesis/speech_recognition/train/audio/",
+      "test": "/home/verdy/workspace_thesis/speech_recognition/test/audio/"
+    }
+  }
+}
