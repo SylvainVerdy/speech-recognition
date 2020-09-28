@@ -1,5 +1,5 @@
 """
-Developer: Sylvain Verdy
+Developper: Sylvain Verdy
 contact: sylvain.verdy.pro@gmail.com
 """
 import hashlib
