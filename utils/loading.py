@@ -42,24 +42,20 @@ def load_data(path):
         count = 0
         waves = [f for f in os.listdir(path + '/' + label) if f.endswith('.wav')]
         for wav in waves:
-            if count <= 4:
-                samples, sample_rate = librosa.load(path + '/' + label + '/' + wav, sr=16000)
-                samples = librosa.resample(samples, sample_rate, 8000)
-                if len(samples) == 8000:
-                    spec = librosa.feature.melspectrogram(samples, sr=16000, n_fft=n_fft, hop_length=hop_length,
-                                                          n_mels=n_mels, fmin=fmin, fmax=fmax)
-                    spec_db = librosa.power_to_db(spec, top_db=top_db)
-                    all_wave.append(spec_to_image(spec_db))
-                    """
-                    # show (128,16) shape to image spectrogram
-                    plt.imshow(spec_to_image(spec_db), interpolation='nearest')
-                    plt.title("show : " + label)
-                    plt.show()
-                    """
-                    all_label.append(label)
-                    count += 1
-            else:
-                break
+            samples, sample_rate = librosa.load(path + '/' + label + '/' + wav, sr=16000)
+            samples = librosa.resample(samples, sample_rate, 8000)
+            if len(samples) == 8000:
+                spec = librosa.feature.melspectrogram(samples, sr=16000, n_fft=n_fft, hop_length=hop_length,
+                                                      n_mels=n_mels, fmin=fmin, fmax=fmax)
+                spec_db = librosa.power_to_db(spec, top_db=top_db)  # shape (128,16)
+                all_wave.append(spec_to_image(spec_db))
+                """
+                # show (128,16) shape to image spectrogram
+                plt.imshow(spec_to_image(spec_db), interpolation='nearest')
+                plt.title("show : " + label)
+                plt.show()
+                """
+                all_label.append(label)
     print(time.time() - time_now, "secondes")
     return all_wave, all_label
 
